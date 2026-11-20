@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BadgeCheck, CalendarCheck, Check, FileCheck2, Globe, Landmark } from "lucide-react";
 import { BOOK_HREF, SITE } from "@/lib/site";
@@ -11,6 +12,10 @@ const MONTHS = [38, 52, 46, 60, 55, 68, 64, 74, 70, 82, 88, 100];
 export default function Hero() {
   return (
     <header className={s.hero} id="top">
+      {/* Background: photo under an ink overlay, a teal glow and a fine ledger grid (decorative). */}
+      <div className={s.heroBg} aria-hidden="true">
+        <Image src="/photos/hero-calculator.jpg" alt="" fill priority sizes="100vw" className={s.heroImg} />
+      </div>
       <div className={`${s.in} ${s.heroGrid}`}>
         <section aria-labelledby="hero-title">
           <span className={s.eyebrow}>U.S. tax &amp; accounting, led by Chartered Accountants</span>
@@ -24,10 +29,10 @@ export default function Hero() {
             price that makes sense.
           </p>
           <div className={s.cta}>
-            <Link className={`${s.btn} ${s.btnP}`} href={BOOK_HREF}>
+            <Link className={`${s.btn} ${s.btnL}`} href={BOOK_HREF}>
               Book a free consultation
             </Link>
-            <a className={`${s.btn} ${s.btnS}`} href={SITE.whatsapp} target="_blank" rel="noopener noreferrer">
+            <a className={`${s.btn} ${s.btnO}`} href={SITE.whatsapp} target="_blank" rel="noopener noreferrer">
               <WhatsAppLogo size={19} />
               WhatsApp us
             </a>

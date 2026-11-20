@@ -26,12 +26,17 @@
 .field {
   position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
   background:
-    radial-gradient(44vw 44vw at 92% 4%, rgba(127, 181, 184, 0.5), transparent 62%),
-    radial-gradient(40vw 40vw at -2% 34%, rgba(17, 25, 36, 0.11), transparent 62%),
-    radial-gradient(38vw 38vw at 74% 82%, rgba(58, 122, 128, 0.2), transparent 62%),
-    radial-gradient(30vw 30vw at 22% 102%, rgba(227, 166, 47, 0.1), transparent 62%),
-    linear-gradient(180deg, #f8f8f5, #eff1ef);
+    radial-gradient(46vw 46vw at 96% 30%, rgba(127, 181, 184, 0.55), transparent 62%),
+    radial-gradient(42vw 42vw at -4% 52%, rgba(42, 96, 102, 0.22), transparent 62%),
+    radial-gradient(40vw 40vw at 78% 92%, rgba(58, 122, 128, 0.28), transparent 62%),
+    radial-gradient(30vw 30vw at 18% 104%, rgba(227, 166, 47, 0.14), transparent 62%),
+    linear-gradient(180deg, #f2f5f3, #e8eeec);
 }
+/* Fine ledger grid across the page, fading out toward the edges, so no section reads as flat white. */
+.field::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(17, 25, 36, 0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(17, 25, 36, 0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(110% 75% at 50% 45%, #000 35%, transparent 85%); mask-image: radial-gradient(110% 75% at 50% 45%, #000 35%, transparent 85%); }
 @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
   .field::before { content: ""; position: absolute; inset: -25%; will-change: transform;
     background: radial-gradient(28vw 28vw at 30% 28%, rgba(127, 181, 184, 0.32), transparent 62%), radial-gradient(24vw 24vw at 76% 68%, rgba(17, 25, 36, 0.08), transparent 62%);
@@ -66,7 +71,7 @@
 
 /* ---------- Nav ---------- */
 .navWrap { position: sticky; top: 12px; z-index: 60; height: 0; }
-.nav { margin: 12px auto 0; max-width: 1180px; width: calc(100% - 32px); height: 68px; border-radius: 999px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 10px 0 24px; transition: height 0.35s var(--spring), max-width 0.35s var(--spring), box-shadow 0.3s; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); background: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.66)); }
+.nav { margin: 12px auto 0; max-width: 1180px; width: calc(100% - 32px); height: 68px; border-radius: 999px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 10px 0 24px; transition: height 0.35s var(--spring), max-width 0.35s var(--spring), box-shadow 0.3s; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.86)); }
 .navShrunk { height: 60px; max-width: 1060px; box-shadow: inset 0 1px 0 #fff, 0 12px 32px rgba(17, 25, 36, 0.12); }
 .logo { display: flex; align-items: center; flex: none; text-decoration: none; }
 .logo img { height: 54px; width: auto; display: block; }
@@ -81,7 +86,28 @@
 .ctaShort { display: none; }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; padding: 148px 0 0; }
+.hero { position: relative; isolation: isolate; padding: 148px 0 0; }
+/* Dark photographic hero: photo + ink overlay + teal glow + ledger grid. Ends behind the middle of the strip. */
+.heroBg { position: absolute; inset: 0 0 52px 0; z-index: -1; overflow: hidden; border-radius: 0 0 44px 44px; background: var(--ink-900); }
+.heroImg { object-fit: cover; object-position: 72% 50%; opacity: 0.6; }
+.heroBg::before, .heroBg::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.heroBg::before {
+  background:
+    radial-gradient(640px 420px at 82% 18%, rgba(127, 181, 184, 0.34), transparent 70%),
+    radial-gradient(520px 380px at 8% 100%, rgba(42, 96, 102, 0.45), transparent 70%),
+    linear-gradient(100deg, rgba(17, 25, 36, 0.97) 0%, rgba(17, 25, 36, 0.9) 40%, rgba(17, 25, 36, 0.62) 72%, rgba(17, 25, 36, 0.5) 100%);
+}
+.heroBg::after {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 25%, #000 70%, transparent); mask-image: linear-gradient(180deg, transparent, #000 25%, #000 70%, transparent);
+}
+.hero .eyebrow { color: var(--teal-300); }
+.hero .h1 { color: #fff; }
+.hero .accent { background: linear-gradient(92deg, #8cc4c6, #c7ecec 75%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .lede { color: rgba(255, 255, 255, 0.8); }
+.hero .proof { color: rgba(255, 255, 255, 0.78); }
+.hero .proof svg { color: var(--teal-300); }
 .heroGrid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 40px; align-items: center; }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; font: 600 14px/1.3 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-600); margin-bottom: 18px; }
 .eyebrow::before { content: ""; width: 22px; height: 2px; border-radius: 2px; background: currentColor; }
@@ -98,7 +124,7 @@
 
 /* Illustrative client workspace (decorative, aria-hidden) */
 .viz { position: relative; height: 640px; }
-.win { position: absolute; inset: 44px 52px 58px 20px; border-radius: 30px; overflow: hidden; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.62)); border: 1px solid #fff; box-shadow: inset 0 1px 0 #fff, 0 30px 70px rgba(17, 25, 36, 0.16), 0 8px 20px rgba(17, 25, 36, 0.06); }
+.win { position: absolute; inset: 44px 52px 58px 20px; border-radius: 30px; overflow: hidden; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 247, 0.9)); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: inset 0 1px 0 #fff, 0 40px 90px rgba(0, 0, 0, 0.45), 0 10px 24px rgba(0, 0, 0, 0.2); }
 .winBar { display: flex; align-items: center; gap: 7px; height: 46px; padding: 0 18px; border-bottom: 1px solid var(--g-line); }
 .winBar i { width: 11px; height: 11px; border-radius: 50%; background: #d9dde2; }
 .winBar span { margin-left: 10px; font-size: 13px; font-weight: 600; color: var(--ink-500); }
@@ -128,6 +154,7 @@
 .next div { flex: 1; }
 .chip { font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 999px; background: var(--teal-50); color: var(--teal-700); white-space: nowrap; }
 .pill { position: absolute; z-index: 3; border-radius: 22px; padding: 14px 18px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); animation: pop 0.6s var(--spring) both, float 9s ease-in-out 1.4s infinite; }
+.hero .pill { background: rgba(255, 255, 255, 0.95); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3); }
 .pill b { display: block; font: 800 24px/1.05 var(--font-head); color: var(--ink-900); letter-spacing: -0.035em; }
 .pill span { font-size: 13px; color: var(--ink-500); }
 /* Pills sit on the window's empty corners (title bar right, below the last card), never over content. */
@@ -136,7 +163,7 @@
 @keyframes pop { from { opacity: 0; transform: scale(0.85); } }
 @keyframes float { 50% { translate: 0 -8px; } }
 
-.strip { margin: 40px auto 0; max-width: 1180px; width: calc(100% - 40px); border-radius: 26px; display: grid; grid-template-columns: repeat(3, 1fr); }
+.strip { margin: 40px auto 0; max-width: 1180px; width: calc(100% - 40px); border-radius: 26px; display: grid; grid-template-columns: repeat(3, 1fr); background: rgba(255, 255, 255, 0.96); box-shadow: 0 24px 50px rgba(17, 25, 36, 0.18); }
 .strip > div { display: flex; gap: 14px; align-items: center; padding: 22px 26px; border-left: 1px solid var(--g-line); }
 .strip > div:first-child { border-left: 0; }
 .strip > div > span { width: 44px; height: 44px; border-radius: 14px; flex: none; display: grid; place-items: center; background: var(--ink-900); color: var(--teal-300); }
@@ -290,6 +317,38 @@
 .fb { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--g-line); font-size: 13.5px; color: var(--slate-400); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; }
 .disclaimer { flex-basis: 100%; font-size: 12.5px; line-height: 1.5; }
 
+/* ---------- Photography and tinted bands ---------- */
+/* Tinted, rounded band behind "How it works", with its own ledger grid. */
+.band { isolation: isolate; margin: 0 12px; border-radius: 44px; overflow: clip; background:
+    radial-gradient(520px 360px at 100% 0%, rgba(127, 181, 184, 0.35), transparent 70%),
+    linear-gradient(180deg, rgba(234, 243, 243, 0.95), rgba(222, 236, 236, 0.85));
+  border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: inset 0 1px 0 #fff; }
+.band::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1;
+  background-image: linear-gradient(rgba(42, 96, 102, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(42, 96, 102, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px; }
+.band .step::after { border-color: #e4efef; }
+
+/* Audience photo: all four are rendered and cross-fade, so switching tabs is instant. */
+.ares { grid-template-columns: 1.05fr 1fr; }
+.aImg { grid-row: 1 / span 2; position: relative; min-height: 360px; border-radius: 22px; overflow: hidden; background: var(--teal-50); }
+.aImg img { object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity 0.6s var(--spring), transform 1.2s var(--spring); }
+.aImg img[data-on] { opacity: 1; transform: none; }
+.aImg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(17, 25, 36, 0.35)); pointer-events: none; }
+
+/* Article cover photo under a teal-ink wash */
+.coverImg { object-fit: cover; z-index: 0; }
+.cover::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(165deg, rgba(31, 74, 79, 0.82), rgba(17, 25, 36, 0.92) 75%); }
+.cover > :not(img) { position: relative; z-index: 2; }
+
+/* Final CTA photo */
+.ctaImg { object-fit: cover; z-index: 0; }
+.cta2::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(560px 340px at 88% 0%, rgba(127, 181, 184, 0.32), transparent 65%),
+    radial-gradient(420px 300px at 0% 100%, rgba(42, 96, 102, 0.55), transparent 70%),
+    linear-gradient(165deg, rgba(27, 38, 54, 0.88), rgba(17, 25, 36, 0.93) 65%); }
+.cta2 > :not(img) { position: relative; z-index: 1; }
+
 /* Floating WhatsApp (desktop) and tab bar (phones) */
 .fab { position: fixed; right: 22px; bottom: 22px; z-index: 55; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: #1f9d55; color: #fff !important; box-shadow: 0 10px 26px rgba(17, 25, 36, 0.25); transition: transform 0.35s var(--spring); }
 .fab:hover { transform: translateY(-3px); }
@@ -324,6 +383,10 @@
   .ctaShort { display: inline; }
   .hero { padding-top: 112px; }
   .heroGrid, .svcGrid, .howGrid, .insGrid, .faqGrid, .ares, .audHead { grid-template-columns: 1fr; }
+  .aImg { grid-row: auto; min-height: 220px; }
+  .band { margin: 0 8px; border-radius: 32px; }
+  .heroBg { border-radius: 0 0 32px 32px; }
+  .heroImg { object-position: 60% 50%; opacity: 0.45; }
   .heroGrid { gap: 12px; }
   .h1 { font-size: clamp(44px, 14vw, 68px); }
   .lede { font-size: 18px; }

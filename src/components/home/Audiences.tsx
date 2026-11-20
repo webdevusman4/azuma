@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AUDIENCES, SERVICES, serviceHref } from "@/lib/site";
@@ -71,12 +72,25 @@ export default function Audiences() {
             ))}
           </div>
 
-          <div key={a.id} className={`${s.ares} ${s.swap}`} role="tabpanel" id={`panel-${a.id}`} aria-labelledby={`tab-${a.id}`}>
-            <div className={s.ac}>
+          <div className={s.ares} role="tabpanel" id={`panel-${a.id}`} aria-labelledby={`tab-${a.id}`}>
+            <div className={s.aImg}>
+              {AUDIENCES.map((x) => (
+                <Image
+                  key={x.id}
+                  src={x.image}
+                  alt={x.id === a.id ? x.imageAlt : ""}
+                  aria-hidden={x.id === a.id ? undefined : true}
+                  data-on={x.id === a.id ? "" : undefined}
+                  fill
+                  sizes="(max-width: 900px) 92vw, 540px"
+                />
+              ))}
+            </div>
+            <div key={`need-${a.id}`} className={`${s.ac} ${s.swap}`}>
               <small>What you need</small>
               <p>{a.need}</p>
             </div>
-            <div className={`${s.ac} ${s.acDark}`}>
+            <div key={`help-${a.id}`} className={`${s.ac} ${s.acDark} ${s.swap}`}>
               <small>How we help</small>
               <p>{a.help}</p>
             </div>

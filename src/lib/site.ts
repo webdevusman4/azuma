@@ -104,6 +104,8 @@ export const serviceHref = (slug: string) => `/services/${slug}`;
 export const AUDIENCES = [
   {
     id: "small-business",
+    image: "/photos/audience-small-business.jpg",
+    imageAlt: "An adviser and a business owner reviewing and signing paperwork at a desk",
     label: "Small businesses",
     need: "Tax filing, clean books and year-round planning, without hiring a full-time finance team.",
     help: "We keep your statements accurate, file on time and plan ahead, so tax season holds no surprises.",
@@ -111,6 +113,8 @@ export const AUDIENCES = [
   },
   {
     id: "founders",
+    image: "/photos/audience-founders.jpg",
+    imageAlt: "A startup team planning at a whiteboard in an open office",
     label: "Startup founders",
     need: "Financial models, forecasts and a company structure that investors and regulators understand.",
     help: "We build your budget and forecast, set up the right structure and keep you compliant as you raise and grow.",
@@ -118,6 +122,8 @@ export const AUDIENCES = [
   },
   {
     id: "international",
+    image: "/photos/audience-international.jpg",
+    imageAlt: "A business owner on a video call with his advisers",
     label: "International owners",
     need: "U.S. tax and compliance obligations handled correctly, wherever you live and work.",
     help: "A U.S.-registered firm with a team in Pakistan, so your U.S. filings are covered across time zones.",
@@ -125,6 +131,8 @@ export const AUDIENCES = [
   },
   {
     id: "freelancers",
+    image: "/photos/audience-freelancers.jpg",
+    imageAlt: "A freelancer working on a laptop by a bright window at home",
     label: "Freelancers & expats",
     need: "Personal U.S. tax filing at a fair price, through a process that doesn't eat your week.",
     help: "Share your documents, we prepare and file, and you get clear answers from a qualified accountant.",

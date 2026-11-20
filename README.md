@@ -32,6 +32,7 @@ npm run build      # production build (static home page)
 | `src/components/home/` | Home sections: Nav, Hero, Services, Pillars, Audiences, Process, Sections (Founders, Insights, FAQ, CTA, Footer), TabBar, Reveal |
 | `src/components/home/home.module.css` | All home styles |
 | `public/brand/`, `public/people/` | Logo files and founder photos (from the live site) |
+| `public/photos/` | Stock photos from Unsplash (free licence); credits in `public/photos/CREDITS.md` |
 | `docs/screens/` | Screenshots of the current build |
 
 ## Design notes
@@ -40,6 +41,8 @@ npm run build      # production build (static home page)
   soft colour field, sticky section headings, a scroll-linked process rail, scroll reveal, dark CTA card and an
   iOS-style tab bar on phones.
 - Motion respects `prefers-reduced-motion`; glass respects `prefers-reduced-transparency`.
+- Backgrounds are never flat white: a fixed teal/ink colour field with a fine ledger grid behind the glass, a dark
+  photographic hero (photo + ink overlay + teal glow + grid), a tinted band behind "How it works" and a photo CTA.
 - `Tight` wraps `. , -` in large headings to pull in Plus Jakarta Sans' wide punctuation spacing.
 
 ## To confirm with the client before launch
@@ -50,6 +53,7 @@ npm run build      # production build (static home page)
 - [ ] "Bookkeeping" as a named service (the current site only says financial statements and reporting)
 - [ ] Founder bios and titles
 - [ ] The hero's workspace visual is illustrative only; confirm the client is comfortable with it
+- [ ] Stock photos (hero, audiences, article, CTA): replace with real Azuma photos when available
 
 ## Deploy (Hostinger Business plan, Node.js)
 

@@ -51,6 +51,7 @@ export function Insights() {
         </div>
         <Link href={a.href} className={`${s.article} ${s.glass}`}>
           <div className={s.cover} aria-hidden="true">
+            <Image src="/photos/insight-tax-forms.jpg" alt="" fill sizes="(max-width: 900px) 92vw, 420px" className={s.coverImg} />
             <small>{a.category}</small>
             <strong>Top 5</strong>
             <em>strategies for small businesses</em>
@@ -103,6 +104,7 @@ export function FinalCta() {
     <section className={s.sec} id="book" aria-labelledby="book-title" style={{ padding: "24px 0 48px" }}>
       <div className={s.in}>
         <div className={s.cta2}>
+          <Image src="/photos/cta-desk.jpg" alt="" fill sizes="(max-width: 1200px) 100vw, 1180px" className={s.ctaImg} />
           <span className={s.eyebrow}>Free consultation</span>
           <h2 id="book-title"><Tight>{"Get your numbers right, this year and every year."}</Tight></h2>
           <p>Tell us where your finances stand. We&apos;ll tell you, plainly, what needs doing and what it will cost.</p>

@@ -51,7 +51,7 @@ export default function Process() {
   }, []);
 
   return (
-    <section className={s.sec} id="how" aria-labelledby="how-title">
+    <section className={`${s.sec} ${s.band}`} id="how" aria-labelledby="how-title">
       <div className={`${s.in} ${s.howGrid}`}>
         <div className={s.sticky}>
           <span className={s.eyebrow}>How it works</span>
