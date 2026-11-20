@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { BookOpenCheck, ChartLine, FileCheck2, ShieldCheck, type LucideIcon } from "lucide-react";
-import s from "./home.module.css";
+import s from "./site.module.css";
 
 // Illustrative updates a client might see. Decorative only (the whole visual is aria-hidden).
 const UPDATES: { Icon: LucideIcon; title: string; sub: string }[] = [

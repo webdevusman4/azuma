@@ -3,8 +3,9 @@
 New site for **azumasolution.com**, replacing the WordPress build. The decisions behind it live in the
 Project Bible (Claude Docs): palette, type, sitemap, SEO and hosting.
 
-Status: **Home page done.** Other pages (Services, About, Insights, Careers, Contact, legal) are linked
-but not built yet, so those links 404 for now.
+Status: **All pages built**: Home, Services + 6 service pages, About, Contact (working form on Netlify), Careers,
+Insights + article, Privacy, Terms, Disclaimer, 404. Pricing is left out until the client confirms prices
+(`/pricing` redirects to `/contact`).
 
 ## Run it
 
@@ -28,9 +29,11 @@ npm run build      # production build (static home page)
 | --- | --- |
 | `src/lib/site.ts` | **Single source of truth**: phone, WhatsApp, email, nav, services, audiences, process, founders, FAQ |
 | `src/app/layout.tsx` | Fonts and site-wide metadata |
-| `src/app/page.tsx` | Home page + JSON-LD (Organization/AccountingService, FAQPage) |
-| `src/components/home/` | Home sections: Nav, Hero (+ LiveVisual), Marquee, Services, Audiences, Why, Sections (Founders, CTA, Footer), TabBar, Reveal |
-| `src/components/home/home.module.css` | All home styles |
+| `src/app/page.tsx` | Home page + Organization/AccountingService JSON-LD |
+| `src/components/site/` | Shared design system: Shell (nav, footer, tab bar, WhatsApp button, reveal), PageHero, ServiceTiles, Steps, Included, Audiences, Why, ContactForm, LegalPage, home sections |
+| `src/components/site/site.module.css` | All styles (one CSS module) |
+| `src/app/**/page.tsx` | One file per page; service and article pages are generated from `site.ts` |
+| `public/__forms.html` | Netlify Forms registration for the consultation form |
 | `public/brand/`, `public/people/` | Logo files and founder photos (from the live site) |
 | `public/photos/` | Stock photos from Unsplash (free licence); credits in `public/photos/CREDITS.md` |
 | `docs/screens/` | Screenshots of the current build |
@@ -53,6 +56,11 @@ npm run build      # production build (static home page)
 
 ## To confirm with the client before launch
 
+- [ ] Service page wording (`SERVICE_DETAILS` in `site.ts`) and Careers copy
+- [ ] Privacy, Terms and Disclaimer: plain-English drafts, have the client (ideally counsel) review
+- [ ] Article: the Solo 401(k) figure ($69,000) is the 2024 limit; the 2025 limit is $70,000
+- [ ] Contact form: in Netlify, turn on form notifications (Forms → consultation → Email) so requests reach info@
+
 - [ ] Which number is WhatsApp (`site.ts` uses +1 (920) 473-1934, as the live hero button does)
 - [ ] "Free consultation" wording and the FAQ answers on pricing and the consultation
 - [ ] Pillar promises: "Price confirmed before work starts", "Compliance checked before anything is filed"
@@ -60,6 +68,12 @@ npm run build      # production build (static home page)
 - [ ] Founder bios and titles
 - [ ] The hero's workspace visual is illustrative only; confirm the client is comfortable with it
 - [ ] Stock photos (hero, audiences, article, CTA): replace with real Azuma photos when available
+
+## Forms
+
+The consultation form posts to Netlify Forms (registered in `public/__forms.html`). Submissions appear in the
+Netlify dashboard under Forms; add an email notification there. On another host (e.g. Hostinger) the post fails
+gracefully and visitors are shown the email and WhatsApp alternatives; switch it to a Server Action + SMTP then.
 
 ## Deploy (Hostinger Business plan, Node.js)
 

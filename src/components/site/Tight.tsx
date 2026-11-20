@@ -1,4 +1,4 @@
-import s from "./home.module.css";
+import s from "./site.module.css";
 
 /**
  * Plus Jakarta Sans gives . , and - generous side bearings, which read as gaps at display sizes with tight tracking.

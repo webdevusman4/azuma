@@ -243,3 +243,150 @@ export const FAQ = [
     a: "It depends on the scope: a single tax return is very different from monthly bookkeeping and forecasting. We confirm the price with you after the consultation, before any work starts.",
   },
 ] as const;
+
+/* ------------------------------------------------------------------------------------------------
+ * Inner pages. All copy is drawn from the current azumasolution.com pages, tightened to keywords.
+ * ---------------------------------------------------------------------------------------------- */
+
+export type ServiceDetail = { intro: string; included: { title: string; line: string }[] };
+
+/** Service pages: one-line intro + four "what's included" items each. CONFIRM wording with the client. */
+export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
+  "tax-planning-preparation": {
+    intro: "Professional tax filing, planning and advisory that keeps you compliant and lowers what you owe.",
+    included: [
+      { title: "Tax filing", line: "Business and individual returns, prepared accurately and filed on time." },
+      { title: "Tax planning", line: "Year-round strategies that reduce tax liabilities." },
+      { title: "Tax advisory", line: "Clear answers when a decision has tax consequences." },
+      { title: "Compliance", line: "Filings that meet current tax rules and regulations." },
+    ],
+  },
+  "bookkeeping-financial-statements": {
+    intro: "Accurate books and financial statements, prepared in accordance with regulatory standards.",
+    included: [
+      { title: "Bookkeeping", line: "Transactions recorded and categorized, so your books stay current." },
+      { title: "Financial statements", line: "Prepared in line with regulatory standards." },
+      { title: "Financial reporting", line: "Reports that show exactly where your business stands." },
+      { title: "Statement analysis", line: "What your numbers mean, explained plainly." },
+    ],
+  },
+  "financial-planning-forecasting": {
+    intro: "Budgets, data-driven financial models and projections that support informed decisions and growth.",
+    included: [
+      { title: "Budgeting", line: "Budgets built for efficiency and financial sustainability." },
+      { title: "Financial models", line: "Data-driven models for decisions and investors." },
+      { title: "Forecasts", line: "Projections that give you a clear view of the months ahead." },
+      { title: "Long-term planning", line: "Personalized financial plans for your long-term goals." },
+    ],
+  },
+  "corporate-structuring-compliance": {
+    intro: "The right business structure, plus support for mergers, acquisitions, risk and regulatory compliance.",
+    included: [
+      { title: "Business structuring", line: "Structures chosen for efficiency and compliance." },
+      { title: "Mergers & acquisitions", line: "Financial support through mergers and acquisitions." },
+      { title: "Risk management", line: "Financial risks identified and managed." },
+      { title: "Regulatory compliance", line: "Adherence to financial regulations and laws." },
+    ],
+  },
+  "audit-support": {
+    intro: "Assistance before and during audits, so you are thoroughly prepared and compliant.",
+    included: [
+      { title: "Audit preparation", line: "Records and documents organized before the audit begins." },
+      { title: "Documentation", line: "The schedules and support auditors ask for." },
+      { title: "Support during the audit", line: "Questions answered and requests handled for you." },
+      { title: "Compliance review", line: "Gaps found and fixed early." },
+    ],
+  },
+  "business-advisory": {
+    intro: "Strategic advice that improves business performance, efficiency and profitability.",
+    included: [
+      { title: "Strategic advice", line: "Guidance on the decisions that shape your business." },
+      { title: "Performance", line: "What drives results, and what holds them back." },
+      { title: "Cost optimization", line: "Budgeting strategies that cut waste and protect margins." },
+      { title: "Profitability", line: "Practical steps to improve the bottom line." },
+    ],
+  },
+};
+
+export const ABOUT = {
+  story: [
+    "Azuma Tax and Financial Solutions LLC is a U.S.-registered firm with a regional office in Pakistan.",
+    "We provide financial and tax solutions for businesses and individuals in the United States, and for international clients with U.S. tax obligations.",
+    "Our accredited professionals focus on accuracy, efficiency and compliance across every financial domain.",
+  ],
+  vision:
+    "To set new standards of excellence in tax and financial services through precision, innovation and client-focused solutions.",
+  mission:
+    "To empower businesses and individuals with accurate, efficient and affordable financial strategies that ensure compliance, growth and long-term success.",
+};
+
+export const CAREERS = {
+  intro: "We're always looking for great talent to join our growing team.",
+  reasons: [
+    { title: "Growing team", line: "A tax and finance firm serving clients in the U.S. and worldwide." },
+    { title: "Make an impact", line: "Real client work for professionals eager to make a difference." },
+    { title: "Dynamic workplace", line: "An innovative team passionate about financial services." },
+  ],
+  apply: "Send your resume to info@azumasolution.com. We'll reach out when a relevant role opens.",
+};
+
+export type ArticleBlock =
+  | { type: "p"; text: string }
+  | { type: "h2"; text: string }
+  | { type: "tip"; text: string }
+  | { type: "ul"; items: string[] };
+
+export type Article = {
+  slug: string;
+  title: string;
+  description: string;
+  author: string;
+  date: string;
+  isoDate: string;
+  category: string;
+  image: string;
+  body: ArticleBlock[];
+};
+
+/**
+ * Articles. Text is Arsalan Zahid's post from the current site (April 8, 2025), lightly formatted.
+ * CONFIRM: the Solo 401(k) figure below ($69,000) is the 2024 limit; the 2025 limit is $70,000. Check before launch.
+ */
+export const ARTICLES: Article[] = [
+  {
+    slug: "tax-planning-strategies-small-businesses-2025",
+    title: "Top 5 tax planning strategies for small businesses in 2025",
+    description:
+      "Five practical ways small businesses can lower their tax bill and stay compliant, from the Managing Partner of Azuma Solutions.",
+    author: "Arsalan Zahid",
+    date: "April 8, 2025",
+    isoDate: "2025-04-08",
+    category: "Tax planning",
+    image: "/photos/insight-tax-forms.jpg",
+    body: [
+      { type: "p", text: "As we step into 2025, small businesses are navigating a rapidly evolving tax environment. With shifting regulations, emerging technologies and increased scrutiny by tax authorities, proactive tax planning has never been more critical. At Azuma, we believe smart tax strategies can make the difference between surviving and thriving." },
+      { type: "p", text: "Here are the top five tax planning strategies every small business should consider in 2025." },
+      { type: "h2", text: "1. Optimize your entity structure for tax efficiency" },
+      { type: "p", text: "Is your current business structure (sole proprietorship, partnership, LLC, S-Corp) still the best fit for your growth and tax objectives? Each structure has its own implications for how income is taxed. With recent legislative changes, it may be time to reassess and possibly restructure to reduce liability and maximize deductions." },
+      { type: "tip", text: "An S-Corp election may significantly reduce self-employment taxes for certain small businesses." },
+      { type: "h2", text: "2. Maximize deductions through strategic expense planning" },
+      { type: "p", text: "Take full advantage of allowable business expenses by reviewing every category, from home office deductions to technology upgrades and professional fees. Implement a monthly review system to track and categorize all expenses properly." },
+      { type: "tip", text: "New in 2025: the IRS has updated thresholds for Section 179 deductions, making capital investment even more beneficial." },
+      { type: "h2", text: "3. Leverage retirement plans for owner and employee benefits" },
+      { type: "p", text: "Contributions to retirement plans like SEP-IRAs, SIMPLE IRAs and Solo 401(k)s not only secure your financial future but also reduce taxable income. For growing businesses, offering employee retirement benefits is also a great retention tool." },
+      { type: "tip", text: "A Solo 401(k) allows business owners to contribute up to $69,000 in 2025, depending on income." },
+      { type: "h2", text: "4. Use tax credits: don't leave money on the table" },
+      { type: "p", text: "Tax credits are often overlooked. Depending on your industry, location or workforce, you may qualify for credits like:" },
+      { type: "ul", items: ["Work Opportunity Tax Credit (WOTC)", "R&D Tax Credit (even for software or system improvements)", "Energy-efficient building or vehicle credits"] },
+      { type: "tip", text: "Credits reduce your tax liability directly, dollar for dollar." },
+      { type: "h2", text: "5. Adopt cloud accounting and bookkeeping tools" },
+      { type: "p", text: "Inaccurate or delayed books lead to missed opportunities and increased risk. Cloud-based accounting tools like QuickBooks Online, Xero or FreshBooks can help you stay organized, monitor KPIs and prepare for tax season in real time." },
+      { type: "tip", text: "Digital record-keeping not only improves compliance but can also reduce audit risk." },
+      { type: "h2", text: "Final thoughts" },
+      { type: "p", text: "Tax planning is not a once-a-year activity. It's a continuous process. Whether you're just starting out or scaling rapidly, these strategies can help you keep more of what you earn while staying compliant." },
+      { type: "p", text: "Need help putting these strategies into action? Book a consultation and we'll guide you every step of the way." },
+    ],
+  },
+];
+
+export const articleHref = (slug: string) => `/insights/${slug}`;

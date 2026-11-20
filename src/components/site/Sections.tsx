@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { BOOK_HREF, FOUNDERS, NAV_LINKS, SERVICES, SITE, serviceHref } from "@/lib/site";
 import { WhatsAppLogo } from "./icons";
 import { Tight } from "./Tight";
-import s from "./home.module.css";
+import s from "./site.module.css";
 
 /** Compact leadership row: photo, name, credentials, role. Bios live on the About page. */
 export function Founders() {

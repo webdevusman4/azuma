@@ -13,6 +13,20 @@ const nextConfig: NextConfig = {
   // Netlify's Next.js adapter manages its own output, so standalone is switched off there (Netlify sets NETLIFY=true).
   output: process.env.NETLIFY ? undefined : "standalone",
   poweredByHeader: false,
+  // Old WordPress URLs (Project Bible: SEO plan). Trailing slashes are stripped by Next.js automatically.
+  async redirects() {
+    return [
+      { source: "/publications", destination: "/insights", permanent: true },
+      {
+        source: "/top-5-tax-planning-strategies-for-small-businesses-in-2025-by-arsalan-zahid-ceo-azuma-financial-and-tax-solutions",
+        destination: "/insights/tax-planning-strategies-small-businesses-2025",
+        permanent: true,
+      },
+      { source: "/pricing", destination: "/contact", permanent: false },
+      { source: "/author/:path*", destination: "/about", permanent: true },
+      { source: "/metform-form/:path*", destination: "/contact", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

@@ -1,18 +1,21 @@
 "use client";
 
 import { useEffect } from "react";
-import s from "./home.module.css";
+import { usePathname } from "next/navigation";
+import s from "./site.module.css";
 
 // Blocks that rise into place, staggered, as they scroll into view (HiScale / ASINAS pattern).
 // The hero has its own entrance and is skipped.
 const SELECTORS = [
   `.${s.sec} .${s.eyebrow}`, `.${s.sec} .${s.h2}`, `.${s.head} .${s.textLink}`, `.${s.mqSec}`,
   `.${s.tiles} > *`, `.${s.people} > *`, `.${s.whyPhoto}`, `.${s.reasons} > *`, `.${s.leaders}`,
-  `.${s.cta2}`, `.${s.footer}`,
+  `.${s.cta2}`, `.${s.footer}`, `.${s.incl} > *`, `.${s.steps} > *`, `.${s.story} > *`, `.${s.mv} > *`, `.${s.bios} > *`,
+  `.${s.channels} > *`, `.${s.form}`, `.${s.apply}`, `.${s.articles} > *`, `.${s.artHero}`,
 ].join(",");
 
 /** Scroll reveal. Does nothing for reduced-motion users, so content is never hidden for them. */
 export default function Reveal() {
+  const pathname = usePathname();
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const fold = window.innerHeight * 0.92;
@@ -58,7 +61,7 @@ export default function Reveal() {
         el.removeAttribute("data-in");
       }
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

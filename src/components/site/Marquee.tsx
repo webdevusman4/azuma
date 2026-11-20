@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 import { MARQUEE_ROWS } from "@/lib/site";
-import s from "./home.module.css";
+import s from "./site.module.css";
 
 /** Two rows of service keywords drifting in opposite directions (HiScale's stack marquee). Pauses on hover. */
 export default function Marquee() {

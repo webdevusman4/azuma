@@ -1,4 +1,4 @@
-import HomePage from "@/components/home/HomePage";
+import HomePage from "@/components/site/HomePage";
 import { FOUNDERS, SITE } from "@/lib/site";
 
 // Structured data (Project Bible: SEO plan). AccountingService is a LocalBusiness subtype Google understands.

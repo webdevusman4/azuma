@@ -2,7 +2,7 @@
 
 /*
  * Site-wide base and the Azuma design tokens (Project Bible: Color theme, Typography).
- * Page and component styles live in CSS modules, e.g. src/components/home/home.module.css.
+ * Page and component styles live in CSS modules, e.g. src/components/site/site.module.css.
  */
 :root {
   color-scheme: light;

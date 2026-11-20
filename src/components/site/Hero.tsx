@@ -4,7 +4,7 @@ import { BOOK_HREF, HERO_KEYWORDS, SITE } from "@/lib/site";
 import { WhatsAppLogo } from "./icons";
 import LiveVisual from "./LiveVisual";
 import { Tight } from "./Tight";
-import s from "./home.module.css";
+import s from "./site.module.css";
 
 const TRUST = [
   { Icon: BadgeCheck, big: "CA & ACCA", small: "qualified founders" },

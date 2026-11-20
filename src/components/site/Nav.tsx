@@ -3,13 +3,15 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
 import { BOOK_HREF, NAV_LINKS, SITE } from "@/lib/site";
-import s from "./home.module.css";
+import s from "./site.module.css";
 
 /** Floating glass pill nav. Tightens after a short scroll, like the HiScale nav. */
 export default function Nav() {
   const [shrunk, setShrunk] = useState(false);
+  const path = usePathname() ?? "/";
 
   useEffect(() => {
     const onScroll = () => setShrunk(window.scrollY > 24);
@@ -26,7 +28,7 @@ export default function Nav() {
         </Link>
         <div className={s.links}>
           {NAV_LINKS.map((l) => (
-            <Link key={l.href} href={l.href}>
+            <Link key={l.href} href={l.href} aria-current={path === l.href || path.startsWith(l.href + "/") ? "page" : undefined}>
               {l.label}
             </Link>
           ))}

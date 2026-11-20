@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { BadgeCheck, PiggyBank, ShieldCheck } from "lucide-react";
 import { Tight } from "./Tight";
-import s from "./home.module.css";
+import s from "./site.module.css";
 
 const REASONS = [
   { Icon: ShieldCheck, word: "Accurate", line: "Accredited professionals. Compliance checked." },

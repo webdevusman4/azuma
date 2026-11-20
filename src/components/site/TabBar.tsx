@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BookOpen, CalendarCheck, House, Layers, UserRound } from "lucide-react";
 import { BOOK_HREF } from "@/lib/site";
-import s from "./home.module.css";
+import s from "./site.module.css";
 
 const TABS = [
   { label: "Home", href: "/", Icon: House },
