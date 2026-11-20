@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/*
+ * Site-wide base and the Azuma design tokens (Project Bible: Color theme, Typography).
+ * Page and component styles live in CSS modules, e.g. src/components/home/home.module.css.
+ */
+:root {
+  color-scheme: light;
+
+  /* Ink & Teal palette, built from the logo */
+  --ink-900: #111924;
+  --ink-700: #25303f;
+  --ink-500: #4a5565;
+  --slate-400: #727278;
+  --teal-700: #1f4a4f;
+  --teal-600: #2a6066;
+  --teal-500: #3a7a80;
+  --teal-300: #7fb5b8;
+  --teal-50: #eaf3f3;
+  --paper: #f7f7f4;
+  --line: #e2e5e9;
+  --amber-400: #e3a62f;
+
+  --font-head: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font: 400 17px/1.65 var(--font-body);
+  background: var(--paper);
+  color: var(--ink-700);
+  overflow-x: clip;
+  width: 100%;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-head);
+  color: var(--ink-900);
+  overflow-wrap: break-word;
+}
+
+a,
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--teal-300);
+  color: var(--ink-900);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
