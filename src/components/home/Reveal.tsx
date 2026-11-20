@@ -3,15 +3,15 @@
 import { useEffect } from "react";
 import s from "./home.module.css";
 
-// Blocks that rise into place as they scroll into view. Hero content has its own entrance and is skipped,
-// and so are elements with scroll behaviour of their own (process steps).
+// Blocks that rise into place, staggered, as they scroll into view (HiScale / ASINAS pattern).
+// The hero has its own entrance and is skipped.
 const SELECTORS = [
-  `.${s.sec} .${s.eyebrow}`, `.${s.sec} .${s.h2}`, `.${s.sec} .${s.sub}`, `.${s.textLink}`,
-  `.${s.cards} > *`, `.${s.pillars} > *`, `.${s.aud}`, `.${s.fGrid} > *`, `.${s.article}`,
-  `.${s.faqList}`, `.${s.cta2}`, `.${s.footer}`,
+  `.${s.sec} .${s.eyebrow}`, `.${s.sec} .${s.h2}`, `.${s.head} .${s.textLink}`, `.${s.mqSec}`,
+  `.${s.tiles} > *`, `.${s.people} > *`, `.${s.whyPhoto}`, `.${s.reasons} > *`, `.${s.leaders}`,
+  `.${s.cta2}`, `.${s.footer}`,
 ].join(",");
 
-/** Scroll reveal (same approach as the HiScale and ASINAS sites). Does nothing for reduced-motion users. */
+/** Scroll reveal. Does nothing for reduced-motion users, so content is never hidden for them. */
 export default function Reveal() {
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -34,7 +34,7 @@ export default function Reveal() {
               el.removeAttribute("data-r");
               el.removeAttribute("data-in");
               el.style.removeProperty("--rd");
-            }, 1400),
+            }, 1500),
           );
         }
       },

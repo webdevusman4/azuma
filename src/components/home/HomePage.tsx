@@ -1,17 +1,20 @@
 import Nav from "./Nav";
 import Hero from "./Hero";
+import Marquee from "./Marquee";
 import Services from "./Services";
-import Pillars from "./Pillars";
 import Audiences from "./Audiences";
-import Process from "./Process";
-import { Faq, FinalCta, Footer, Founders, Insights } from "./Sections";
+import Why from "./Why";
+import { FinalCta, Footer, Founders } from "./Sections";
 import Reveal from "./Reveal";
 import TabBar from "./TabBar";
 import { WhatsAppLogo } from "./icons";
 import { SITE } from "@/lib/site";
 import s from "./home.module.css";
 
-/** Azuma home page (Project Bible: Sitemap & page specs, Home). */
+/**
+ * Azuma home page: short, image-led and keyword-first. Detail (process, FAQ, insights, full service copy)
+ * lives on the inner pages.
+ */
 export default function HomePage() {
   return (
     <div className={s.root}>
@@ -22,13 +25,11 @@ export default function HomePage() {
       <Nav />
       <Hero />
       <main id="main">
+        <Marquee />
         <Services />
-        <Pillars />
         <Audiences />
-        <Process />
+        <Why />
         <Founders />
-        <Insights />
-        <Faq />
         <FinalCta />
       </main>
       <Footer />

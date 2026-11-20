@@ -1,97 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Plus } from "lucide-react";
-import { BOOK_HREF, FAQ, FOUNDERS, LATEST_INSIGHT, NAV_LINKS, SERVICES, SITE, serviceHref } from "@/lib/site";
+import { ArrowUpRight } from "lucide-react";
+import { BOOK_HREF, FOUNDERS, NAV_LINKS, SERVICES, SITE, serviceHref } from "@/lib/site";
 import { WhatsAppLogo } from "./icons";
 import { Tight } from "./Tight";
 import s from "./home.module.css";
 
+/** Compact leadership row: photo, name, credentials, role. Bios live on the About page. */
 export function Founders() {
   return (
-    <section className={s.sec} id="team" aria-labelledby="team-title" style={{ paddingTop: 24 }}>
+    <section className={s.sec} id="team" aria-labelledby="team-title" style={{ paddingTop: 16 }}>
       <div className={s.in}>
-        <span className={s.eyebrow}>The people behind your numbers</span>
-        <h2 className={s.h2} id="team-title"><Tight>{"You work with the founders."}</Tight></h2>
-        <p className={s.sub}>Two partners, one in chartered accountancy and corporate finance, one in business operations and strategy.</p>
-        <div className={s.fGrid}>
+        <div className={`${s.leaders} ${s.glass}`}>
+          <div>
+            <span className={s.eyebrow}>Leadership</span>
+            <h2 className={s.h3x} id="team-title"><Tight>{"Meet the founders."}</Tight></h2>
+            <Link className={s.textLink} href="/about">
+              About Azuma <ArrowUpRight size={18} strokeWidth={2.4} aria-hidden="true" />
+            </Link>
+          </div>
           {FOUNDERS.map((f) => (
-            <article key={f.name} className={`${s.founder} ${s.glass}`}>
-              <div className={s.photo}>
-                <Image src={f.photo} alt={`${f.name}, ${f.role}`} fill sizes="(max-width: 560px) 90vw, 200px" />
+            <article key={f.name} className={s.leader}>
+              <div className={s.avatar}>
+                <Image src={f.photo} alt={`${f.name}, ${f.role}`} fill sizes="96px" />
               </div>
-              <div className={s.fBody}>
-                <span className={s.badge}>{f.credentials}</span>
+              <div>
                 <h3>{f.name}</h3>
+                <p className={s.cred}>{f.credentials}</p>
                 <p className={s.role}>{f.role}</p>
-                <p>{f.bio}</p>
               </div>
             </article>
-          ))}
-        </div>
-        <Link className={s.textLink} href="/about">
-          More about Azuma <ArrowRight size={18} strokeWidth={2.4} aria-hidden="true" />
-        </Link>
-      </div>
-    </section>
-  );
-}
-
-export function Insights() {
-  const a = LATEST_INSIGHT;
-  return (
-    <section className={s.sec} id="insights" aria-labelledby="insights-title" style={{ paddingTop: 24 }}>
-      <div className={`${s.in} ${s.insGrid}`}>
-        <div>
-          <span className={s.eyebrow}>Insights</span>
-          <h2 className={s.h2} id="insights-title"><Tight>{"Plain-English tax and finance updates."}</Tight></h2>
-          <p className={s.sub}>Practical guidance from our accountants on the rules that affect your business.</p>
-          <Link className={s.textLink} href="/insights">
-            All insights <ArrowRight size={18} strokeWidth={2.4} aria-hidden="true" />
-          </Link>
-        </div>
-        <Link href={a.href} className={`${s.article} ${s.glass}`}>
-          <div className={s.cover} aria-hidden="true">
-            <Image src="/photos/insight-tax-forms.jpg" alt="" fill sizes="(max-width: 900px) 92vw, 420px" className={s.coverImg} />
-            <small>{a.category}</small>
-            <strong>Top 5</strong>
-            <em>strategies for small businesses</em>
-          </div>
-          <div className={s.aBody}>
-            <h3>{a.title}</h3>
-            <p>{a.excerpt}</p>
-            <div className={s.meta}>
-              <span>
-                {a.author} · <time dateTime={a.isoDate}>{a.date}</time>
-              </span>
-              <span className={s.more}>
-                Read <ArrowRight size={17} strokeWidth={2.4} aria-hidden="true" />
-              </span>
-            </div>
-          </div>
-        </Link>
-      </div>
-    </section>
-  );
-}
-
-export function Faq() {
-  return (
-    <section className={s.sec} id="faq" aria-labelledby="faq-title" style={{ paddingTop: 24 }}>
-      <div className={`${s.in} ${s.faqGrid}`}>
-        <div className={s.sticky}>
-          <span className={s.eyebrow}>FAQ</span>
-          <h2 className={s.h2} id="faq-title"><Tight>{"Questions, answered."}</Tight></h2>
-          <p className={s.sub}>Straight answers before you book a call. Anything else, just ask.</p>
-        </div>
-        <div className={`${s.faqList} ${s.glass}`}>
-          {FAQ.map((f, i) => (
-            <details key={f.q} open={i === 0}>
-              <summary>
-                {f.q}
-                <span className={s.pl} aria-hidden="true"><Plus size={16} strokeWidth={2.8} /></span>
-              </summary>
-              <p>{f.a}</p>
-            </details>
           ))}
         </div>
       </div>

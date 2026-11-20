@@ -1,5 +1,5 @@
 import HomePage from "@/components/home/HomePage";
-import { FAQ, FOUNDERS, SITE } from "@/lib/site";
+import { FOUNDERS, SITE } from "@/lib/site";
 
 // Structured data (Project Bible: SEO plan). AccountingService is a LocalBusiness subtype Google understands.
 const jsonLd = {
@@ -18,11 +18,7 @@ const jsonLd = {
       email: SITE.email,
       sameAs: SITE.social.map((x) => x.href),
       founder: FOUNDERS.map((f) => ({ "@type": "Person", name: f.name, jobTitle: f.role })),
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: FAQ.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
-    },
+    }
   ],
 };
 

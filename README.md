@@ -29,13 +29,19 @@ npm run build      # production build (static home page)
 | `src/lib/site.ts` | **Single source of truth**: phone, WhatsApp, email, nav, services, audiences, process, founders, FAQ |
 | `src/app/layout.tsx` | Fonts and site-wide metadata |
 | `src/app/page.tsx` | Home page + JSON-LD (Organization/AccountingService, FAQPage) |
-| `src/components/home/` | Home sections: Nav, Hero, Services, Pillars, Audiences, Process, Sections (Founders, Insights, FAQ, CTA, Footer), TabBar, Reveal |
+| `src/components/home/` | Home sections: Nav, Hero (+ LiveVisual), Marquee, Services, Audiences, Why, Sections (Founders, CTA, Footer), TabBar, Reveal |
 | `src/components/home/home.module.css` | All home styles |
 | `public/brand/`, `public/people/` | Logo files and founder photos (from the live site) |
 | `public/photos/` | Stock photos from Unsplash (free licence); credits in `public/photos/CREDITS.md` |
 | `docs/screens/` | Screenshots of the current build |
 
 ## Design notes
+
+- The home page is short and keyword-first (owner feedback): hero, trust bar, keyword marquee, 6 service photo tiles,
+  4 audience photo cards, Why Azuma, founders, CTA. Process, FAQ and insights move to inner pages (data stays in `site.ts`).
+- "Alive" like HiScale: drifting light in the hero and page background, a team photo that tilts with the pointer and
+  slowly zooms, a notification card cycling client updates, breathing cash-flow bars, floating pills, a two-row keyword
+  marquee, photo tiles that zoom on hover, staggered scroll reveal and a pulsing WhatsApp button.
 
 - Follows the house style of the HiScale, Fecto and ASINAS sites: floating glass pill nav, glass panels over a
   soft colour field, sticky section headings, a scroll-linked process rail, scroll reveal, dark CTA card and an
