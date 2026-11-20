@@ -23,6 +23,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       { source: "/pricing", destination: "/contact", permanent: false },
+      { source: "/services/tax-planning-preparation", destination: "/services#tax", permanent: true },
+      { source: "/services/bookkeeping-financial-statements", destination: "/services#accounting", permanent: true },
+      { source: "/services/financial-planning-forecasting", destination: "/services#cfo", permanent: true },
+      { source: "/services/corporate-structuring-compliance", destination: "/services#corporate", permanent: true },
+      { source: "/services/audit-support", destination: "/services#audit", permanent: true },
+      { source: "/services/business-advisory", destination: "/services#advisory", permanent: true },
       { source: "/author/:path*", destination: "/about", permanent: true },
       { source: "/metform-form/:path*", destination: "/contact", permanent: true },
     ];

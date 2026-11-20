@@ -8,7 +8,7 @@ import s from "./site.module.css";
 // The hero has its own entrance and is skipped.
 const SELECTORS = [
   `.${s.sec} .${s.eyebrow}`, `.${s.sec} .${s.h2}`, `.${s.head} .${s.textLink}`, `.${s.mqSec}`,
-  `.${s.tiles} > *`, `.${s.people} > *`, `.${s.whyPhoto}`, `.${s.reasons} > *`, `.${s.leaders}`,
+  `.${s.bento} > *`, `.${s.notListed}`, `.${s.world}`, `.${s.catSec} .${s.catGrid} > *`, `.${s.people} > *`, `.${s.whyPhoto}`, `.${s.reasons} > *`, `.${s.leaders}`,
   `.${s.cta2}`, `.${s.footer}`, `.${s.incl} > *`, `.${s.steps} > *`, `.${s.story} > *`, `.${s.mv} > *`, `.${s.bios} > *`,
   `.${s.channels} > *`, `.${s.form}`, `.${s.apply}`, `.${s.articles} > *`, `.${s.artHero}`,
 ].join(",");

@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { SERVICES } from "@/lib/site";
-import ServiceTiles from "./ServiceTiles";
+import CategoryCards from "./CategoryCards";
 import { Tight } from "./Tight";
 import s from "./site.module.css";
 
-/** Six photo tiles: title + three keywords each. The detail lives on the service pages. */
+/** Home: the full range of services, grouped, so the breadth reads at a glance. */
 export default function Services() {
   return (
     <section className={s.sec} id="services" aria-labelledby="services-title">
@@ -13,13 +12,13 @@ export default function Services() {
         <div className={s.head}>
           <div>
             <span className={s.eyebrow}>Services</span>
-            <h2 className={s.h2} id="services-title"><Tight>{"Everything your numbers need."}</Tight></h2>
+            <h2 className={s.h2} id="services-title"><Tight>{"Every part of your finances. Covered."}</Tight></h2>
           </div>
           <Link className={s.textLink} href="/services">
-            All services <ArrowUpRight size={18} strokeWidth={2.4} aria-hidden="true" />
+            Full list of services <ArrowUpRight size={18} strokeWidth={2.4} aria-hidden="true" />
           </Link>
         </div>
-        <ServiceTiles items={SERVICES} />
+        <CategoryCards />
       </div>
     </section>
   );

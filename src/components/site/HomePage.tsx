@@ -1,6 +1,7 @@
 import Hero from "./Hero";
 import Marquee from "./Marquee";
 import Services from "./Services";
+import Worldwide from "./Worldwide";
 import Audiences from "./Audiences";
 import Why from "./Why";
 import { FinalCta, Founders } from "./Sections";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <main id="main">
         <Marquee />
         <Services />
+        <Worldwide />
         <Audiences />
         <Why />
         <Founders />

@@ -37,91 +37,141 @@ export const NAV_LINKS = [
 
 export type ServiceIcon = "tax" | "books" | "forecast" | "structure" | "audit" | "advisory";
 
-export type Service = {
-  slug: string;
+export type ServiceCategory = {
+  id: string;
   name: string;
   short: string;
-  outcome: string;
-  tags: string[];
+  line: string;
   icon: ServiceIcon;
   image: string;
   imageAlt: string;
+  /** Services in this category. Finance is broad, so this is a living list, not a fixed menu. */
+  services: string[];
 };
 
-/** The six consolidated services (Project Bible: Sitemap). Outcomes are rewritten from the current site's service copy. */
-export const SERVICES: Service[] = [
+/**
+ * What Azuma does, grouped into six categories so the breadth shows without six thin pages.
+ * Items marked "confirm" are common finance services that aren't in the current site's copy: keep, edit or remove.
+ */
+export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
-    slug: "tax-planning-preparation",
+    id: "tax",
+    name: "Tax Planning & Compliance",
+    short: "Tax",
+    line: "Returns, planning and advice for businesses and individuals, in the U.S. and across borders.",
+    icon: "tax",
     image: "/photos/service-tax.jpg",
     imageAlt: "Two professionals reviewing tax forms at a table",
-    name: "Tax Planning & Preparation",
-    short: "Tax",
-    outcome: "Returns filed accurately and on time, with planning that lowers what you owe.",
-    tags: ["Tax filing", "Tax planning", "Compliance"],
-    icon: "tax",
+    services: [
+      "Business tax returns",
+      "Individual tax returns",
+      "Tax planning",
+      "Tax advisory",
+      "Cross-border & non-resident filings",
+      "Tax compliance reviews",
+      "IRS notices & correspondence", // confirm
+      "Sales & use tax", // confirm
+    ],
   },
   {
-    slug: "bookkeeping-financial-statements",
+    id: "accounting",
+    name: "Accounting & Bookkeeping",
+    short: "Accounting",
+    line: "Clean books and accurate financial statements, prepared to regulatory standards.",
+    icon: "books",
     image: "/photos/service-books.jpg",
     imageAlt: "An accountant working through figures with a calculator and notebook",
-    name: "Bookkeeping & Financial Statements",
-    short: "Books",
-    outcome: "Statements prepared to regulatory standards, so you always know where you stand.",
-    tags: ["Bookkeeping", "Financial statements", "Reporting"],
-    icon: "books",
+    services: [
+      "Bookkeeping",
+      "Financial statements",
+      "Financial reporting",
+      "Bank & account reconciliations", // confirm
+      "Month-end & year-end close", // confirm
+      "Accounts payable & receivable", // confirm
+      "Payroll support", // confirm
+    ],
   },
   {
-    slug: "financial-planning-forecasting",
+    id: "cfo",
+    name: "CFO & Financial Planning",
+    short: "CFO Services",
+    line: "Budgets, models and forecasts that turn your numbers into decisions.",
+    icon: "forecast",
     image: "/photos/service-forecast.jpg",
     imageAlt: "A business owner reviewing financial charts on a tablet",
-    name: "Financial Planning & Forecasting",
-    short: "Forecasts",
-    outcome: "Budgets, financial models and forecasts that turn your numbers into decisions.",
-    tags: ["Budgeting", "Financial models", "Forecasts"],
-    icon: "forecast",
+    services: [
+      "Budgeting",
+      "Forecasting & projections",
+      "Financial modeling",
+      "Long-term financial planning",
+      "Cash-flow management", // confirm
+      "Fractional CFO", // confirm
+      "Investor & board reporting", // confirm
+    ],
   },
   {
-    slug: "corporate-structuring-compliance",
+    id: "corporate",
+    name: "Corporate Structuring & Compliance",
+    short: "Corporate",
+    line: "The right structure, deals done properly and compliance kept current as you grow.",
+    icon: "structure",
     image: "/photos/service-structure.jpg",
     imageAlt: "A team meeting around a boardroom table",
-    name: "Corporate Structuring & Compliance",
-    short: "Structure",
-    outcome: "The right structure for your business, kept compliant as you grow.",
-    tags: ["Entity structure", "Mergers & acquisitions", "Regulatory compliance"],
-    icon: "structure",
+    services: [
+      "Business structuring",
+      "Mergers & acquisitions",
+      "Regulatory compliance",
+      "Financial risk management",
+      "Entity setup & formation", // confirm
+      "Due diligence", // confirm
+    ],
   },
   {
-    slug: "audit-support",
+    id: "audit",
+    name: "Audit & Assurance",
+    short: "Audit",
+    line: "Thorough preparation before an audit and steady support all the way through it.",
+    icon: "audit",
     image: "/photos/service-audit.jpg",
     imageAlt: "A professional reading through documents",
-    name: "Audit Support",
-    short: "Audit",
-    outcome: "Thorough preparation before an audit, and steady support all the way through it.",
-    tags: ["Audit preparation", "Documentation", "Compliance review"],
-    icon: "audit",
+    services: [
+      "Audit preparation",
+      "Audit support",
+      "Compliance reviews",
+      "Documentation & schedules",
+      "Internal controls review", // confirm
+    ],
   },
   {
-    slug: "business-advisory",
+    id: "advisory",
+    name: "Business Advisory & Systems",
+    short: "Advisory",
+    line: "Strategic advice and better systems that lift performance and protect profitability.",
+    icon: "advisory",
     image: "/photos/service-advisory.jpg",
     imageAlt: "Advisers in discussion with a client in a modern office",
-    name: "Business Advisory",
-    short: "Advisory",
-    outcome: "Strategic advice that improves performance, cuts costs and protects profitability.",
-    tags: ["Performance", "Cost optimization", "Risk management"],
-    icon: "advisory",
+    services: [
+      "Business advisory",
+      "Cost optimization",
+      "Profitability analysis",
+      "ERP implementation",
+      "Process improvement", // confirm
+      "Startup advisory", // confirm
+    ],
   },
 ];
+
+export const categoryHref = (id: string) => `/services#${id}`;
 
 /** Keyword chips under the hero headline. */
 export const HERO_KEYWORDS = ["Tax Filing", "Bookkeeping", "Forecasting", "Compliance", "Audit Support"] as const;
 
-/** Scrolling keyword marquee: only services Azuma actually offers (from the current site's service copy). */
+/** Scrolling keyword marquee, drawn from SERVICE_CATEGORIES. */
 export const MARQUEE_ROWS = [
-  ["Tax Filing", "Tax Planning", "Business Returns", "Individual Returns", "Bookkeeping", "Financial Statements", "Financial Reporting", "Budgeting"],
-  ["Forecasting", "Financial Models", "Entity Structuring", "Mergers & Acquisitions", "Regulatory Compliance", "Audit Support", "Cost Optimization", "Risk Management", "Business Advisory"],
+  ["Business Tax Returns", "Individual Returns", "Tax Planning", "Cross-border Filings", "Bookkeeping", "Financial Statements", "Reconciliations", "Month-end Close", "Payroll Support", "Budgeting"],
+  ["Forecasting", "Financial Modeling", "Cash-flow Management", "Fractional CFO", "Business Structuring", "Mergers & Acquisitions", "Regulatory Compliance", "Audit Support", "ERP Implementation", "Cost Optimization", "Business Advisory"],
 ] as const;
 
-export const serviceHref = (slug: string) => `/services/${slug}`;
 
 /** Audience switcher (Project Bible: Audiences). Services are referenced by slug. */
 export const AUDIENCES = [
@@ -135,7 +185,6 @@ export const AUDIENCES = [
     label: "Small businesses",
     need: "Tax filing, clean books and year-round planning, without hiring a full-time finance team.",
     help: "We keep your statements accurate, file on time and plan ahead, so tax season holds no surprises.",
-    services: ["tax-planning-preparation", "bookkeeping-financial-statements", "business-advisory"],
   },
   {
     id: "founders",
@@ -147,7 +196,6 @@ export const AUDIENCES = [
     label: "Startup founders",
     need: "Financial models, forecasts and a company structure that investors and regulators understand.",
     help: "We build your budget and forecast, set up the right structure and keep you compliant as you raise and grow.",
-    services: ["financial-planning-forecasting", "corporate-structuring-compliance"],
   },
   {
     id: "international",
@@ -159,7 +207,6 @@ export const AUDIENCES = [
     label: "International owners",
     need: "U.S. tax and compliance obligations handled correctly, wherever you live and work.",
     help: "A U.S.-registered firm with a team in Pakistan, so your U.S. filings are covered across time zones.",
-    services: ["tax-planning-preparation", "corporate-structuring-compliance"],
   },
   {
     id: "freelancers",
@@ -171,7 +218,6 @@ export const AUDIENCES = [
     label: "Freelancers & expats",
     need: "Personal U.S. tax filing at a fair price, through a process that doesn't eat your week.",
     help: "Share your documents, we prepare and file, and you get clear answers from a qualified accountant.",
-    services: ["tax-planning-preparation"],
   },
 ] as const;
 
@@ -247,66 +293,6 @@ export const FAQ = [
 /* ------------------------------------------------------------------------------------------------
  * Inner pages. All copy is drawn from the current azumasolution.com pages, tightened to keywords.
  * ---------------------------------------------------------------------------------------------- */
-
-export type ServiceDetail = { intro: string; included: { title: string; line: string }[] };
-
-/** Service pages: one-line intro + four "what's included" items each. CONFIRM wording with the client. */
-export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
-  "tax-planning-preparation": {
-    intro: "Professional tax filing, planning and advisory that keeps you compliant and lowers what you owe.",
-    included: [
-      { title: "Tax filing", line: "Business and individual returns, prepared accurately and filed on time." },
-      { title: "Tax planning", line: "Year-round strategies that reduce tax liabilities." },
-      { title: "Tax advisory", line: "Clear answers when a decision has tax consequences." },
-      { title: "Compliance", line: "Filings that meet current tax rules and regulations." },
-    ],
-  },
-  "bookkeeping-financial-statements": {
-    intro: "Accurate books and financial statements, prepared in accordance with regulatory standards.",
-    included: [
-      { title: "Bookkeeping", line: "Transactions recorded and categorized, so your books stay current." },
-      { title: "Financial statements", line: "Prepared in line with regulatory standards." },
-      { title: "Financial reporting", line: "Reports that show exactly where your business stands." },
-      { title: "Statement analysis", line: "What your numbers mean, explained plainly." },
-    ],
-  },
-  "financial-planning-forecasting": {
-    intro: "Budgets, data-driven financial models and projections that support informed decisions and growth.",
-    included: [
-      { title: "Budgeting", line: "Budgets built for efficiency and financial sustainability." },
-      { title: "Financial models", line: "Data-driven models for decisions and investors." },
-      { title: "Forecasts", line: "Projections that give you a clear view of the months ahead." },
-      { title: "Long-term planning", line: "Personalized financial plans for your long-term goals." },
-    ],
-  },
-  "corporate-structuring-compliance": {
-    intro: "The right business structure, plus support for mergers, acquisitions, risk and regulatory compliance.",
-    included: [
-      { title: "Business structuring", line: "Structures chosen for efficiency and compliance." },
-      { title: "Mergers & acquisitions", line: "Financial support through mergers and acquisitions." },
-      { title: "Risk management", line: "Financial risks identified and managed." },
-      { title: "Regulatory compliance", line: "Adherence to financial regulations and laws." },
-    ],
-  },
-  "audit-support": {
-    intro: "Assistance before and during audits, so you are thoroughly prepared and compliant.",
-    included: [
-      { title: "Audit preparation", line: "Records and documents organized before the audit begins." },
-      { title: "Documentation", line: "The schedules and support auditors ask for." },
-      { title: "Support during the audit", line: "Questions answered and requests handled for you." },
-      { title: "Compliance review", line: "Gaps found and fixed early." },
-    ],
-  },
-  "business-advisory": {
-    intro: "Strategic advice that improves business performance, efficiency and profitability.",
-    included: [
-      { title: "Strategic advice", line: "Guidance on the decisions that shape your business." },
-      { title: "Performance", line: "What drives results, and what holds them back." },
-      { title: "Cost optimization", line: "Budgeting strategies that cut waste and protect margins." },
-      { title: "Profitability", line: "Practical steps to improve the bottom line." },
-    ],
-  },
-};
 
 export const ABOUT = {
   story: [
@@ -390,3 +376,84 @@ export const ARTICLES: Article[] = [
 ];
 
 export const articleHref = (slug: string) => `/insights/${slug}`;
+
+/* ------------------------------------------------------------------------------------------------
+ * Worldwide globe (home page). CONFIRM with the client: regions and cities shown as places Azuma serves.
+ * ---------------------------------------------------------------------------------------------- */
+export type City = { name: string; lat: number; lng: number };
+/** `labels`: cities named on the globe itself (well-separated ones; close neighbours would overlap). */
+export type Region = { id: string; name: string; focus: [number, number]; labels: string[]; cities: City[] };
+
+export const REGIONS: Region[] = [
+  {
+    id: "usa",
+    name: "United States",
+    focus: [38, -96],
+    labels: ["New York", "Los Angeles", "Miami"],
+    cities: [
+      { name: "New York", lat: 40.71, lng: -74.01 },
+      { name: "Chicago", lat: 41.88, lng: -87.63 },
+      { name: "Houston", lat: 29.76, lng: -95.37 },
+      { name: "Los Angeles", lat: 34.05, lng: -118.24 },
+      { name: "Miami", lat: 25.76, lng: -80.19 },
+    ],
+  },
+  {
+    id: "canada",
+    name: "Canada",
+    focus: [50, -95],
+    labels: ["Toronto", "Vancouver"],
+    cities: [
+      { name: "Toronto", lat: 43.65, lng: -79.38 },
+      { name: "Vancouver", lat: 49.28, lng: -123.12 },
+      { name: "Montreal", lat: 45.5, lng: -73.57 },
+    ],
+  },
+  {
+    id: "europe",
+    name: "Europe",
+    focus: [50, 8],
+    labels: ["London", "Frankfurt"],
+    cities: [
+      { name: "London", lat: 51.51, lng: -0.13 },
+      { name: "Paris", lat: 48.86, lng: 2.35 },
+      { name: "Frankfurt", lat: 50.11, lng: 8.68 },
+      { name: "Amsterdam", lat: 52.37, lng: 4.9 },
+    ],
+  },
+  {
+    id: "middle-east",
+    name: "Middle East",
+    focus: [25, 50],
+    labels: ["Dubai", "Riyadh"],
+    cities: [
+      { name: "Dubai", lat: 25.2, lng: 55.27 },
+      { name: "Abu Dhabi", lat: 24.45, lng: 54.38 },
+      { name: "Riyadh", lat: 24.71, lng: 46.68 },
+      { name: "Doha", lat: 25.29, lng: 51.53 },
+    ],
+  },
+  {
+    id: "pakistan",
+    name: "Pakistan",
+    focus: [29, 70],
+    labels: ["Karachi", "Islamabad"],
+    cities: [
+      { name: "Karachi", lat: 24.86, lng: 67.0 },
+      { name: "Lahore", lat: 31.55, lng: 74.34 },
+      { name: "Islamabad", lat: 33.68, lng: 73.05 },
+    ],
+  },
+  {
+    id: "southeast-asia",
+    name: "Southeast Asia",
+    focus: [6, 104],
+    labels: ["Singapore", "Bangkok"],
+    cities: [
+      { name: "Singapore", lat: 1.35, lng: 103.82 },
+      { name: "Kuala Lumpur", lat: 3.14, lng: 101.69 },
+      { name: "Bangkok", lat: 13.76, lng: 100.5 },
+      { name: "Jakarta", lat: -6.2, lng: 106.85 },
+    ],
+  },
+];

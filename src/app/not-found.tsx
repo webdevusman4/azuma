@@ -1,7 +1,6 @@
 import Link from "next/link";
 import PageHero from "@/components/site/PageHero";
-import ServiceTiles from "@/components/site/ServiceTiles";
-import { SERVICES } from "@/lib/site";
+import CategoryCards from "@/components/site/CategoryCards";
 import s from "@/components/site/site.module.css";
 
 export default function NotFound() {
@@ -15,7 +14,7 @@ export default function NotFound() {
               <Link className={`${s.btn} ${s.btnN}`} href="/">Back to home</Link>
               <Link className={`${s.btn} ${s.btnN}`} href="/contact">Contact us</Link>
             </div>
-            <ServiceTiles items={SERVICES.slice(0, 3)} />
+            <CategoryCards />
           </div>
         </section>
       </main>

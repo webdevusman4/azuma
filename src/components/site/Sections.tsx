@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { BOOK_HREF, FOUNDERS, NAV_LINKS, SERVICES, SITE, serviceHref } from "@/lib/site";
+import { BOOK_HREF, FOUNDERS, NAV_LINKS, SERVICE_CATEGORIES, SITE, categoryHref } from "@/lib/site";
 import { WhatsAppLogo } from "./icons";
 import { Tight } from "./Tight";
 import s from "./site.module.css";
@@ -77,8 +77,8 @@ export function Footer() {
         </div>
         <div>
           <h4>Services</h4>
-          {SERVICES.map((x) => (
-            <Link key={x.slug} href={serviceHref(x.slug)}>{x.name}</Link>
+          {SERVICE_CATEGORIES.map((c) => (
+            <Link key={c.id} href={categoryHref(c.id)}>{c.name}</Link>
           ))}
         </div>
         <div>

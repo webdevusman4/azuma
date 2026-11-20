@@ -4,10 +4,9 @@ import { AUDIENCES, BOOK_HREF } from "@/lib/site";
 import { Tight } from "./Tight";
 import s from "./site.module.css";
 
-/** Tall photo cards, label + three keywords each. Pass `only` to show the audiences a service is for. */
-export default function Audiences({ title = "Built for owners.", only }: { title?: string; only?: string }) {
-  const matched = only ? AUDIENCES.filter((a) => (a.services as readonly string[]).includes(only)) : [];
-  const list = matched.length >= 2 ? matched : AUDIENCES;
+/** Tall photo cards, label + three keywords each. */
+export default function Audiences({ title = "Built for owners." }: { title?: string }) {
+  const list = AUDIENCES;
   return (
     <section className={`${s.sec} ${s.band}`} id="who" aria-labelledby="who-title">
       <div className={s.in}>

@@ -3,9 +3,9 @@
 New site for **azumasolution.com**, replacing the WordPress build. The decisions behind it live in the
 Project Bible (Claude Docs): palette, type, sitemap, SEO and hosting.
 
-Status: **All pages built**: Home, Services + 6 service pages, About, Contact (working form on Netlify), Careers,
+Status: **All pages built**: Home, Services (one page, six categories), About, Contact (working form on Netlify), Careers,
 Insights + article, Privacy, Terms, Disclaimer, 404. Pricing is left out until the client confirms prices
-(`/pricing` redirects to `/contact`).
+(`/pricing` redirects to `/contact`). The old per-service URLs redirect (308) to `/services#<category>`.
 
 ## Run it
 
@@ -21,18 +21,19 @@ npm run build      # production build (static home page)
 - CSS Modules with design tokens in `src/app/globals.css` (Ink & Teal palette from the logo)
 - Plus Jakarta Sans (headings) + Inter (body), self-hosted from `@fontsource-variable` via `next/font/local`
 - lucide-react icons
+- cobe (WebGL dotted globe, ~5 KB) for the Worldwide section
 - `output: "standalone"` + `server.js` for Hostinger Node.js hosting (same setup as HiScale)
 
 ## Where things are
 
 | Path | What |
 | --- | --- |
-| `src/lib/site.ts` | **Single source of truth**: phone, WhatsApp, email, nav, services, audiences, process, founders, FAQ |
+| `src/lib/site.ts` | **Single source of truth**: phone, WhatsApp, email, nav, service categories, regions/cities for the globe, audiences, process, founders, FAQ |
 | `src/app/layout.tsx` | Fonts and site-wide metadata |
 | `src/app/page.tsx` | Home page + Organization/AccountingService JSON-LD |
-| `src/components/site/` | Shared design system: Shell (nav, footer, tab bar, WhatsApp button, reveal), PageHero, ServiceTiles, Steps, Included, Audiences, Why, ContactForm, LegalPage, home sections |
+| `src/components/site/` | Shared design system: Shell (nav, footer, tab bar, WhatsApp button, reveal), PageHero, CategoryCards, Worldwide + WorldGlobe, Steps, Audiences, Why, ContactForm, LegalPage, home sections |
 | `src/components/site/site.module.css` | All styles (one CSS module) |
-| `src/app/**/page.tsx` | One file per page; service and article pages are generated from `site.ts` |
+| `src/app/**/page.tsx` | One file per page; article pages are generated from `site.ts` |
 | `public/__forms.html` | Netlify Forms registration for the consultation form |
 | `public/brand/`, `public/people/` | Logo files and founder photos (from the live site) |
 | `public/photos/` | Stock photos from Unsplash (free licence); credits in `public/photos/CREDITS.md` |
@@ -40,11 +41,19 @@ npm run build      # production build (static home page)
 
 ## Design notes
 
-- The home page is short and keyword-first (owner feedback): hero, trust bar, keyword marquee, 6 service photo tiles,
-  4 audience photo cards, Why Azuma, founders, CTA. Process, FAQ and insights move to inner pages (data stays in `site.ts`).
+- The home page is short and keyword-first (owner feedback): hero, trust bar, keyword marquee, a bento of 6 service
+  categories (40+ services as keyword chips, plus "Don't see your need? Ask us"), the Worldwide globe, 4 audience
+  photo cards, Why Azuma, founders, CTA. Process, FAQ and insights move to inner pages (data stays in `site.ts`).
 - "Alive" like HiScale: drifting light in the hero and page background, a team photo that tilts with the pointer and
   slowly zooms, a notification card cycling client updates, breathing cash-flow bars, floating pills, a two-row keyword
   marquee, photo tiles that zoom on hover, staggered scroll reveal and a pulsing WhatsApp button.
+
+- Services read as broad, not a short list: six categories, each listing its services; the Services page shows
+  every category with a photo and full list, with a sticky category bar.
+- Worldwide section: a slowly rotating dotted globe (cobe) with 23 city markers and amber arcs between the hubs.
+  The region list auto-cycles every few seconds (USA, Canada, Europe, Middle East, Pakistan, Southeast Asia);
+  clicking a region turns the globe to it and shows city labels (CSS anchor positioning on cobe's marker anchors).
+  Drag to spin. Starts only when scrolled near; static under reduced motion.
 
 - Follows the house style of the HiScale, Fecto and ASINAS sites: floating glass pill nav, glass panels over a
   soft colour field, sticky section headings, a scroll-linked process rail, scroll reveal, dark CTA card and an
@@ -56,7 +65,9 @@ npm run build      # production build (static home page)
 
 ## To confirm with the client before launch
 
-- [ ] Service page wording (`SERVICE_DETAILS` in `site.ts`) and Careers copy
+- [ ] Services marked `// confirm` in `SERVICE_CATEGORIES` (`site.ts`): not on the current site, added to show range
+- [ ] Globe: the regions and cities in `REGIONS`, and the "Clients across 6 regions" line
+- [ ] Careers copy
 - [ ] Privacy, Terms and Disclaimer: plain-English drafts, have the client (ideally counsel) review
 - [ ] Article: the Solo 401(k) figure ($69,000) is the 2024 limit; the 2025 limit is $70,000
 - [ ] Contact form: in Netlify, turn on form notifications (Forms → consultation → Email) so requests reach info@

@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
-import { SERVICES, SITE } from "@/lib/site";
+import { SERVICE_CATEGORIES, SITE } from "@/lib/site";
 import s from "./site.module.css";
 
 type State = "idle" | "sending" | "sent" | "error";
@@ -65,9 +65,10 @@ export default function ContactForm() {
           <span>Service</span>
           <select name="service" defaultValue="">
             <option value="">Not sure yet</option>
-            {SERVICES.map((x) => (
-              <option key={x.slug} value={x.name}>{x.name}</option>
+            {SERVICE_CATEGORIES.map((c) => (
+              <option key={c.id} value={c.name}>{c.name}</option>
             ))}
+            <option value="Something else">Something else</option>
           </select>
         </label>
       </div>
